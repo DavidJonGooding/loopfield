@@ -17,7 +17,7 @@
     "smoke:web": "electron tests/integration.cjs --web"
   },
   "devDependencies": {
-    "electron": "^42.0.0",
+    "electron": "^44.7.0",
     "electron-builder": "^26.0.12"
   },
   "build": {
