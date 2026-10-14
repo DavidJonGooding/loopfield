@@ -34,7 +34,9 @@ jobs:
             echo "Version $TAG already published; leaving its assets unchanged."
             exit 0
           fi
-          gh run download "$RUN_ID" -n Loopfield-Windows -D release-assets
-          gh run download "$RUN_ID" -n Loopfield-macOS -D release-assets
+          gh run download "$RUN_ID" -n Loopfield-Windows -D downloaded-assets/windows
+          gh run download "$RUN_ID" -n Loopfield-macOS -D downloaded-assets/mac
+          mkdir -p release-assets
+          find downloaded-assets -type f -name 'Loopfield-*' -exec cp {} release-assets/ \;
           (cd release-assets && sha256sum Loopfield-* > SHA256SUMS.txt)
           gh release create "$TAG" release-assets/* --target "$BUILD_SHA" --prerelease --title "Loopfield $TAG alpha" --notes-file docs/RELEASE_NOTES.md
