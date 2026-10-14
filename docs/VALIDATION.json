@@ -3,6 +3,7 @@
   "deterministicTests": 16,
   "desktop": "passed synthetic audio/file checks",
   "web": "passed loop, session export/import, WAV export and recovery checks",
-  "mac": "GitHub macOS runner: deterministic tests and Intel/Apple Silicon DMG/ZIP packaging passed; hardware audio validation pending",
-  "website": "GitHub web build and tests passed; Pages repository setting must be enabled before deployment"
+  "mac": "GitHub macOS runner: tests, Intel/Apple Silicon packaging, native runner-architecture app launch and packaged synthetic audio checks passed; hardware audio validation pending",
+  "website": "GitHub Pages deployment passed; HTTPS app verified at https://davegooding.com/loopfield/ with Audio online",
+  "release": "Public v0.3.0 alpha: Windows x64 portable, Mac x64/arm64 DMG and ZIP, SHA256 checksums"
 }

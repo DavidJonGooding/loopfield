@@ -4,7 +4,7 @@ A minimal, open-source live loop station for microphone, USB audio, MIDI and key
 
 ![Loopfield](docs/images/loopfield.png)
 
-[Web app](https://davidjongooding.github.io/loopfield/) · [Desktop releases](https://github.com/DavidJonGooding/loopfield/releases) · [Buy me a coffee](https://buymeacoffee.com/davegooding)
+[Web app](https://davegooding.com/loopfield/) · [Desktop releases](https://github.com/DavidJonGooding/loopfield/releases) · [Buy me a coffee](https://buymeacoffee.com/davegooding)
 
 **Alpha:** Windows and desktop browsers are the initial test targets. Mac Intel/Apple Silicon packages have built successfully in GitHub Actions; actual Mac audio validation and production signing/notarization remain required.
 
