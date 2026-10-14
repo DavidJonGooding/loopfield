@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.wav
+*.loopr
+artifacts/*-profile/
+artifacts/
+*.loopfield
+*.p12
+*.pfx
+.env*

@@ -1,0 +1,17 @@
+name: Bug report
+description: Report an audio, device or interface problem
+body:
+  - type: textarea
+    attributes:
+      label: What happened and how can we reproduce it?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: App/browser version, OS and audio/MIDI devices
+      description: Include input/output selection, sample rate and monitoring mode. Attach recordings only if you want them publicly shared.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Error messages or screenshots

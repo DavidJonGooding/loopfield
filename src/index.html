@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'"
+    />
+    <title>Loopfield · Live loop station</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="icon.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#101216" />
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <span class="logo">↻</span> loopfield <small>LIVE LOOP STATION</small>
+      </div>
+      <div class="header-actions">
+        <a
+          class="support-link"
+          href="https://buymeacoffee.com/davegooding"
+          target="_blank"
+          rel="noopener noreferrer"
+          >☕ Support</a
+        >
+        <button id="open">Open session</button
+        ><button id="save">Save session</button
+        ><span id="engine-state" class="badge">AUDIO OFFLINE</span>
+      </div>
+    </header>
+    <main>
+      <section class="intro">
+        <div>
+          <div class="eyebrow">YOUR NEXT SONG STARTS HERE</div>
+          <h1>Catch a moment.<br /><span>Build a whole song.</span></h1>
+        </div>
+        <div class="intro-note">
+          Play it. Loop it. Layer it.<br />Four tracks. One performance.
+          <div class="project-links">
+            <a
+              href="https://github.com/DavidJonGooding/loopfield/releases"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Desktop downloads ↗</a
+            ><a
+              href="https://github.com/DavidJonGooding/loopfield"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Source ↗</a
+            >
+          </div>
+        </div>
+      </section>
+      <section class="transport panel">
+        <button id="start" class="primary">Enable audio</button
+        ><button id="play" disabled>▶ Play <kbd>Space</kbd></button
+        ><label
+          >Tempo <input id="bpm" type="number" min="40" max="240" value="100" />
+          <small>BPM</small></label
+        ><label
+          >Loop
+          <select id="bars">
+            <option value="1">1 bar</option>
+            <option value="2" selected>2 bars</option>
+            <option value="4">4 bars</option>
+            <option value="8">8 bars</option>
+          </select></label
+        ><label class="check"
+          ><input id="click" type="checkbox" checked /> Click
+          <kbd>C</kbd></label
+        ><label class="check"
+          ><input id="count-in" type="checkbox" checked /> Count-in</label
+        >
+        <div class="beats"><i></i><i></i><i></i><i></i></div>
+        <span id="position">1 / 2</span>
+      </section>
+      <div class="workspace">
+        <section>
+          <div class="section-heading">
+            <h2>The loop desk</h2>
+            <span>Record at the next loop boundary · one pass per layer</span>
+          </div>
+          <div id="tracks"></div>
+          <div class="song panel">
+            <div>
+              <span class="eyebrow">PERFORMANCE RECORDER</span>
+              <h2>Keep the whole take.</h2>
+              <p id="record-description">
+                Stereo WAV, written to disk as you play. Metronome excluded.
+              </p>
+            </div>
+            <div>
+              <div id="record-time">00:00</div>
+              <button id="record" disabled class="record-song">
+                ● Record song <kbd>R</kbd>
+              </button>
+              <div id="web-recording-tools" hidden>
+                <button id="recover">Recover take</button
+                ><button id="clear-takes">Clear stored takes</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <aside>
+          <section class="panel routing">
+            <div class="section-heading">
+              <h2>Audio & instruments</h2>
+              <button id="refresh" title="Refresh device list">↻</button>
+            </div>
+            <label
+              >Audio input<select id="input">
+                <option value="">Default microphone</option>
+              </select></label
+            ><label class="check"
+              ><input id="second" type="checkbox" /> Add a second audio
+              input</label
+            ><label id="second-row" hidden
+              >Second input<select id="input2"></select></label
+            ><label
+              >Audio output<select id="output">
+                <option value="">System default</option>
+              </select></label
+            ><label class="check"
+              ><input id="monitor" type="checkbox" /> Hear live input
+              <kbd>H</kbd></label
+            >
+            <p class="hint">
+              Use headphones before enabling monitoring. An interface’s direct
+              monitor gives the shortest live monitoring path.
+            </p>
+            <label
+              >Input gain
+              <input
+                id="input-gain"
+                type="range"
+                min="0"
+                max="2"
+                step="0.01"
+                value="1"
+            /></label>
+            <div class="meter"><div id="meter-fill"></div></div>
+            <div class="meter-label">
+              <span>INPUT</span><span id="peak">−∞ dB</span>
+            </div>
+            <label
+              >USB MIDI controller<select id="midi">
+                <option value="">None</option>
+              </select></label
+            >
+            <p class="hint">
+              MIDI plays the built-in sine synth. Audio instruments use the
+              input selectors above.
+            </p>
+            <label
+              >Master volume<input
+                id="master"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.8"
+            /></label>
+          </section>
+          <section class="panel latency">
+            <span class="eyebrow">TIMING MATTERS</span>
+            <h2>Latency lab</h2>
+            <div class="latency-value" id="latency">— <small>ms</small></div>
+            <p id="latency-detail">
+              Enable audio to see device-reported output timing.
+            </p>
+            <label
+              >Recording compensation
+              <div>
+                <input
+                  id="compensation"
+                  type="number"
+                  min="0"
+                  max="500"
+                  value="0"
+                />
+                <small>ms</small>
+              </div></label
+            >
+            <p class="hint">
+              Shifts recorded audio earlier. Start at 0; record a short tap
+              against the click, then adjust by ear. This does not reduce
+              monitoring delay.
+            </p>
+            <details>
+              <summary>Getting a tighter response</summary>
+              <p>
+                Use wired headphones. Start with one audio interface for both
+                input and output. Turn off device audio enhancements. Keep input
+                and output at the same sample rate. Two separate devices have
+                independent clocks and can drift over long takes.
+              </p>
+              <p>
+                This version requests interactive latency from the audio host.
+                It does not expose ASIO, WASAPI, or Core Audio buffer control.
+                The values above are output estimates, not measured round-trip
+                latency.
+              </p>
+            </details>
+          </section>
+        </aside>
+      </div>
+      <footer>
+        <span
+          ><kbd>1–4</kbd> Record / overdub &nbsp; <kbd>Shift + 1–4</kbd> Mute
+          &nbsp; <kbd>Alt + 1–4</kbd> Undo</span
+        ><button id="panic">Silence synth <kbd>Esc</kbd></button
+        ><button id="reset">Clear all</button>
+      </footer>
+      <div id="message" role="status">
+        Enable audio, choose your input, then press 1 to record your first loop.
+      </div>
+    </main>
+    <script src="config.js"></script>
+    <script src="platform.js"></script>
+    <script src="renderer.js"></script>
+  </body>
+</html>

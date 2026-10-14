@@ -1,0 +1,8 @@
+{
+  "version": "0.3.0",
+  "deterministicTests": 16,
+  "desktop": "passed synthetic audio/file checks",
+  "web": "passed loop, session export/import, WAV export and recovery checks",
+  "mac": "packaging configured; macOS build/hardware validation pending",
+  "website": "Pages workflow prepared; publication pending repository creation"
+}

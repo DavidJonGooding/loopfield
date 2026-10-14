@@ -1,0 +1,62 @@
+{
+  "name": "loopfield",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Live desktop loop station",
+  "author": "Dave Gooding",
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test tests/*.test.cjs",
+    "smoke": "electron tests/integration.cjs",
+    "dist": "electron-builder --win portable --publish never",
+    "dist:win": "electron-builder --win portable --publish never",
+    "dist:mac": "electron-builder --mac dmg zip --x64 --arm64 --publish never",
+    "build:web": "node scripts/build-web.cjs",
+    "start:web": "node scripts/dev-server.cjs",
+    "smoke:web": "electron tests/integration.cjs --web"
+  },
+  "devDependencies": {
+    "electron": "^42.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "directories": {
+      "output": "dist/v${version}"
+    },
+    "appId": "io.github.davidjongooding.loopfield",
+    "productName": "Loopfield",
+    "files": [
+      "main.cjs",
+      "preload.cjs",
+      "LICENSE",
+      "THIRD_PARTY_NOTICES.md",
+      "src/**/*"
+    ],
+    "win": {
+      "icon": "src/icon.ico",
+      "target": "portable"
+    },
+    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+    "mac": {
+      "category": "public.app-category.music",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "hardenedRuntime": true,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "extendInfo": {
+        "NSMicrophoneUsageDescription": "Loopfield records microphone and connected audio input to create live music loops and performances."
+      },
+      "icon": "src/icon-mac.png"
+    }
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DavidJonGooding/loopfield.git"
+  },
+  "homepage": "https://davidjongooding.github.io/loopfield/"
+}
