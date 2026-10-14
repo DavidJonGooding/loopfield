@@ -6,7 +6,7 @@ A minimal, open-source live loop station for microphone, USB audio, MIDI and key
 
 [Web app](https://davidjongooding.github.io/loopfield/) · [Desktop releases](https://github.com/DavidJonGooding/loopfield/releases) · [Buy me a coffee](https://buymeacoffee.com/davegooding)
 
-**Alpha:** Windows and desktop browsers are the initial test targets. Mac Intel/Apple Silicon packaging is configured in GitHub Actions; actual Mac validation and production signing/notarization remain required. Download links become available when releases are published.
+**Alpha:** Windows and desktop browsers are the initial test targets. Mac Intel/Apple Silicon packages have built successfully in GitHub Actions; actual Mac audio validation and production signing/notarization remain required.
 
 ## Your first song
 
@@ -55,7 +55,7 @@ Prefer wired input/output on one interface and hardware direct monitoring when a
 
 ## Hosting and releases
 
-GitHub Actions builds the website and deploys Pages when configured. Desktop workflows build Windows x64 and experimental Mac x64/arm64 DMG/ZIP packages. Tags create a **draft prerelease** and checksums for review; they do not publish stable downloads automatically.
+GitHub Actions builds the website and deploys Pages when configured. Desktop workflows build Windows x64 and experimental Mac x64/arm64 DMG/ZIP packages. Successful main-branch desktop builds publish a versioned **alpha prerelease** with checksums. An existing version is never overwritten. Tags also support draft releases. Stable releases remain a separate maintainer decision.
 
 Set repository Settings → Pages → Source to **GitHub Actions**. Mac public distribution requires Apple signing/notarization and actual microphone/device tests. Default Mac CI uses ad-hoc signing and is not notarized.
 

@@ -3,6 +3,6 @@
   "deterministicTests": 16,
   "desktop": "passed synthetic audio/file checks",
   "web": "passed loop, session export/import, WAV export and recovery checks",
-  "mac": "packaging configured; macOS build/hardware validation pending",
-  "website": "Pages workflow prepared; publication pending repository creation"
+  "mac": "GitHub macOS runner: deterministic tests and Intel/Apple Silicon DMG/ZIP packaging passed; hardware audio validation pending",
+  "website": "GitHub web build and tests passed; Pages repository setting must be enabled before deployment"
 }
